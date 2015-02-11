@@ -1,0 +1,24 @@
+<link rel="import" href="../../packages/polymer/polymer.html">
+
+<link rel="import" href="element_greeting.html">
+<link rel="import" href="create_greeting.html">
+
+<polymer-element name="list-greeting"> <template>
+<style>
+#wrapper {
+  margin: 20px;
+}
+</style>
+  <div id="error-message" hidden></div>
+<div>
+  <create-greeting on-creategreeting="{{createGreeting}}"
+    greeting="{{newGreeting}}"></create-greeting>
+</div>
+
+
+<div id="wrapper" on-deletegreeting="{{deleteGreeting}}">
+  <template repeat="{{greeting in greetings}}">
+  <element-greeting greeting="{{greeting}}"></element-greeting>
+  </template>
+</div>
+</template> <script type="application/dart" src="list_greeting.dart"></script> </polymer-element>

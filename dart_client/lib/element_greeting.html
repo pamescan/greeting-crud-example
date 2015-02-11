@@ -1,0 +1,92 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../packages/polymer/polymer.html">
+
+<link rel="import" href="create_greeting.html">
+
+<polymer-element name="element-greeting"> <template>
+<style>
+:host {
+  display: block;
+  margin: 20px 2%;
+
+}
+
+#wrapper {
+  margin: 20px;
+}
+
+#load-button {
+  background: blue;
+  color: white;
+}
+
+#greeting-card {
+  margin: 5px 15px;
+  display: block;
+  position: relative;
+  float: left;
+  background-color: white;
+  padding: 20px;
+  width: 20em;
+  height: 290px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  border-radius: 3px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .16);
+}
+
+#greeting-card>p:nth-child(3) {
+  font-size: 0.7rem;
+}
+
+.delete-button {
+  background: red;
+  color: white;
+}
+
+.edit-button {
+  background: yellow;
+  color: white;
+}
+
+#create {
+  background: green;
+  color: white;
+}
+</style>
+<div on-formNotNeeded={{cancelEditing}}
+  on-codelabvalidated={{updateCodelab}}>
+  <!-- MODO PRESENTACION -->
+  <template if={{!editing}}>
+  <div id="greeting-card">
+    <h2>{{greeting.author}}</h2>
+    <p>{{greeting.content}}</p>
+<!--     <p>{{greeting.id}}</p> -->
+    <p>{{greeting.date}}</p>
+    <paper-button raised class="delete-button"
+      on-click="{{deleteGreeting}}"> <core-icon
+      icon="delete"></core-icon></paper-button>
+    <paper-button on-click="{{startEditing}}" raised class="edit-button">
+    <core-icon icon="create"></core-icon></paper-button>
+  </div>
+  </template>
+  <!-- MODO EDICION -->
+
+  <template if="{{editing}}">
+  <div id="greeting-card">
+    <paper-input label="Author" inputValue="{{greeting.author}}"
+      floatingLabel></paper-input>
+    <paper-input label="Content" inputValue="{{greeting.content}}"
+      floatingLabel multiline></paper-input>
+    <paper-button raised id="create" on-click="{{updateCodelab}}">
+    <core-icon icon="done"></core-icon></paper-button>
+    <paper-button on-click="{{cancelEditing}}" raised
+      class="delete-button">
+    <core-icon icon="clear"></core-icon></paper-button>
+  </div>
+  </template>
+
+
+</div>
+
+</template> <script type="application/dart" src="element_greeting.dart"></script> </polymer-element>
