@@ -1,0 +1,41 @@
+<link rel="import" href="../../packages/polymer/polymer.html">
+
+
+<link rel="import" href="list_greeting.html">
+<link rel="import" href="list_book.html">
+
+
+<link rel="import" href="../../packages/paper_elements/paper_tab.html">
+<link rel="import" href="../../packages/paper_elements/paper_tabs.html">
+<link rel="import" href="../../packages/paper_elements/paper_icon_button.html">
+<link rel="import" href="../../packages/core_elements/core_toolbar.html">
+<link rel="import" href="../../packages/core_elements/core_pages.html">
+<polymer-element name="main-app"> <template>
+<style>
+
+</style>
+
+  <core-toolbar class="medium-tall">
+
+    <paper-icon-button icon="menu"></paper-icon-button>
+    <div flex>Title</div>
+    <paper-icon-button icon="search"></paper-icon-button>
+    <paper-icon-button icon="more-vert"></paper-icon-button>
+
+    <div class="bottom fit" horizontal layout>
+      <paper-tabs selected={{selectedTab}} flex style="max-width: 600px;">
+        <paper-tab>Greatings</paper-tab>
+        <paper-tab>Libros</paper-tab>
+      </paper-tabs>
+
+    </div>
+
+  </core-toolbar>
+  <core-pages selected={{selectedTab}}>
+  <div><list-greeting></list-greeting></div>
+  <div><list-book></list-book></div>
+</core-pages>
+
+    <script type="application/dart" src="main_app.dart"></script>
+    </template>
+</polymer-element>

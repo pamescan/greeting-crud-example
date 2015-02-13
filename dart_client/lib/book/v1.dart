@@ -1,4 +1,4 @@
-library saluditos.greeting.v1;
+library saluditos.book.v1;
 
 import "dart:core" as core;
 import "dart:collection" as collection;
@@ -13,23 +13,23 @@ import '../common/common.dart' as common;
 export '../common/common.dart' show ApiRequestError;
 export '../common/common.dart' show DetailedApiRequestError;
 
-/** Greetings API */
-class GreetingApi {
+/** Books API */
+class BookApi {
 
   final common_internal.ApiRequester _requester;
 
-  GreetsResourceApi get greets => new GreetsResourceApi(_requester);
+  BooksResourceApi get books => new BooksResourceApi(_requester);
 
-  GreetingApi(http.Client client, {core.String rootUrl: "https://crudtesteo.appspot.com/_ah/api/", core.String servicePath: "greeting/v1/"}) :
+  BookApi(http.Client client, {core.String rootUrl: "https://crudtesteo.appspot.com/_ah/api/", core.String servicePath: "book/v1/"}) :
       _requester = new common_internal.ApiRequester(client, rootUrl, servicePath);
 }
 
 
 /** Not documented yet. */
-class GreetsResourceApi {
+class BooksResourceApi {
   final common_internal.ApiRequester _requester;
 
-  GreetsResourceApi(common_internal.ApiRequester client) :
+  BooksResourceApi(common_internal.ApiRequester client) :
       _requester = client;
 
   /**
@@ -39,7 +39,7 @@ class GreetsResourceApi {
    *
    * Request parameters:
    *
-   * Completes with a [Greeting].
+   * Completes with a [Book].
    *
    * Completes with a [common.ApiRequestError] if the API endpoint returned an
    * error.
@@ -47,7 +47,7 @@ class GreetsResourceApi {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-  async.Future<Greeting> create(GreetingReq request) {
+  async.Future<Book> create(BookReq request) {
     var _url = null;
     var _queryParams = new core.Map();
     var _uploadMedia = null;
@@ -60,7 +60,7 @@ class GreetsResourceApi {
     }
 
 
-    _url = 'greetings';
+    _url = 'Books';
 
     var _response = _requester.request(_url,
                                        "PUT",
@@ -69,7 +69,7 @@ class GreetsResourceApi {
                                        uploadOptions: _uploadOptions,
                                        uploadMedia: _uploadMedia,
                                        downloadOptions: _downloadOptions);
-    return _response.then((data) => new Greeting.fromJson(data));
+    return _response.then((data) => new Book.fromJson(data));
   }
 
   /**
@@ -99,7 +99,7 @@ class GreetsResourceApi {
 
     _downloadOptions = null;
 
-    _url = 'greetings/' + common_internal.Escaper.ecapeVariable('$id');
+    _url = 'Books/' + common_internal.Escaper.ecapeVariable('$id');
 
     var _response = _requester.request(_url,
                                        "DELETE",
@@ -118,7 +118,7 @@ class GreetsResourceApi {
    *
    * [limit] - null
    *
-   * Completes with a [GreetingsList].
+   * Completes with a [BooksList].
    *
    * Completes with a [common.ApiRequestError] if the API endpoint returned an
    * error.
@@ -126,7 +126,7 @@ class GreetsResourceApi {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-  async.Future<GreetingsList> list({core.int limit}) {
+  async.Future<BooksList> list({core.int limit}) {
     var _url = null;
     var _queryParams = new core.Map();
     var _uploadMedia = null;
@@ -139,7 +139,7 @@ class GreetsResourceApi {
     }
 
 
-    _url = 'greetings';
+    _url = 'Books';
 
     var _response = _requester.request(_url,
                                        "GET",
@@ -148,7 +148,7 @@ class GreetsResourceApi {
                                        uploadOptions: _uploadOptions,
                                        uploadMedia: _uploadMedia,
                                        downloadOptions: _downloadOptions);
-    return _response.then((data) => new GreetingsList.fromJson(data));
+    return _response.then((data) => new BooksList.fromJson(data));
   }
 
   /**
@@ -158,7 +158,7 @@ class GreetsResourceApi {
    *
    * [id] - null
    *
-   * Completes with a [Greeting].
+   * Completes with a [Book].
    *
    * Completes with a [common.ApiRequestError] if the API endpoint returned an
    * error.
@@ -166,7 +166,7 @@ class GreetsResourceApi {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-  async.Future<Greeting> show(core.String id) {
+  async.Future<Book> show(core.String id) {
     var _url = null;
     var _queryParams = new core.Map();
     var _uploadMedia = null;
@@ -179,7 +179,7 @@ class GreetsResourceApi {
     }
 
 
-    _url = 'greetings/' + common_internal.Escaper.ecapeVariable('$id');
+    _url = 'Books/' + common_internal.Escaper.ecapeVariable('$id');
 
     var _response = _requester.request(_url,
                                        "GET",
@@ -188,7 +188,7 @@ class GreetsResourceApi {
                                        uploadOptions: _uploadOptions,
                                        uploadMedia: _uploadMedia,
                                        downloadOptions: _downloadOptions);
-    return _response.then((data) => new Greeting.fromJson(data));
+    return _response.then((data) => new Book.fromJson(data));
   }
 
   /**
@@ -200,7 +200,7 @@ class GreetsResourceApi {
    *
    * [id] - null
    *
-   * Completes with a [Greeting].
+   * Completes with a [Book].
    *
    * Completes with a [common.ApiRequestError] if the API endpoint returned an
    * error.
@@ -208,7 +208,7 @@ class GreetsResourceApi {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-  async.Future<Greeting> update(Greeting request, core.String id) {
+  async.Future<Book> update(Book request, core.String id) {
     var _url = null;
     var _queryParams = new core.Map();
     var _uploadMedia = null;
@@ -224,7 +224,7 @@ class GreetsResourceApi {
     }
 
 
-    _url = 'greetings/' + common_internal.Escaper.ecapeVariable('$id');
+    _url = 'Books/' + common_internal.Escaper.ecapeVariable('$id');
 
     var _response = _requester.request(_url,
                                        "POST",
@@ -233,7 +233,7 @@ class GreetsResourceApi {
                                        uploadOptions: _uploadOptions,
                                        uploadMedia: _uploadMedia,
                                        downloadOptions: _downloadOptions);
-    return _response.then((data) => new Greeting.fromJson(data));
+    return _response.then((data) => new Book.fromJson(data));
   }
 
 }
@@ -241,7 +241,7 @@ class GreetsResourceApi {
 
 
 /** Not documented yet. */
-class Greeting {
+class Book {
   /** Not documented yet. */
   core.String author;
 
@@ -249,26 +249,44 @@ class Greeting {
   core.String content;
 
   /** Not documented yet. */
-  core.String date;
-
-  /** Not documented yet. */
   core.String id;
 
+  /** Not documented yet. */
+  core.String lastModifiedDate;
 
-  Greeting();
+  /** Not documented yet. */
+  core.String publishedDate;
 
-  Greeting.fromJson(core.Map _json) {
+  /** Not documented yet. */
+  core.String title;
+
+  /** Not documented yet. */
+  core.String urlImage;
+
+
+  Book();
+
+  Book.fromJson(core.Map _json) {
     if (_json.containsKey("author")) {
       author = _json["author"];
     }
     if (_json.containsKey("content")) {
       content = _json["content"];
     }
-    if (_json.containsKey("date")) {
-      date = _json["date"];
-    }
     if (_json.containsKey("id")) {
       id = _json["id"];
+    }
+    if (_json.containsKey("lastModifiedDate")) {
+      lastModifiedDate = _json["lastModifiedDate"];
+    }
+    if (_json.containsKey("publishedDate")) {
+      publishedDate = _json["publishedDate"];
+    }
+    if (_json.containsKey("title")) {
+      title = _json["title"];
+    }
+    if (_json.containsKey("urlImage")) {
+      urlImage = _json["urlImage"];
     }
   }
 
@@ -280,11 +298,20 @@ class Greeting {
     if (content != null) {
       _json["content"] = content;
     }
-    if (date != null) {
-      _json["date"] = date;
-    }
     if (id != null) {
       _json["id"] = id;
+    }
+    if (lastModifiedDate != null) {
+      _json["lastModifiedDate"] = lastModifiedDate;
+    }
+    if (publishedDate != null) {
+      _json["publishedDate"] = publishedDate;
+    }
+    if (title != null) {
+      _json["title"] = title;
+    }
+    if (urlImage != null) {
+      _json["urlImage"] = urlImage;
     }
     return _json;
   }
@@ -292,22 +319,40 @@ class Greeting {
 
 
 /** Not documented yet. */
-class GreetingReq {
+class BookReq {
   /** Not documented yet. */
   core.String Author;
 
   /** Not documented yet. */
   core.String Content;
 
+  /** Not documented yet. */
+  core.String Image;
 
-  GreetingReq();
+  /** Not documented yet. */
+  core.String PublishedDate;
 
-  GreetingReq.fromJson(core.Map _json) {
+  /** Not documented yet. */
+  core.String Title;
+
+
+  BookReq();
+
+  BookReq.fromJson(core.Map _json) {
     if (_json.containsKey("Author")) {
       Author = _json["Author"];
     }
     if (_json.containsKey("Content")) {
       Content = _json["Content"];
+    }
+    if (_json.containsKey("Image")) {
+      Image = _json["Image"];
+    }
+    if (_json.containsKey("PublishedDate")) {
+      PublishedDate = _json["PublishedDate"];
+    }
+    if (_json.containsKey("Title")) {
+      Title = _json["Title"];
     }
   }
 
@@ -319,22 +364,31 @@ class GreetingReq {
     if (Content != null) {
       _json["Content"] = Content;
     }
+    if (Image != null) {
+      _json["Image"] = Image;
+    }
+    if (PublishedDate != null) {
+      _json["PublishedDate"] = PublishedDate;
+    }
+    if (Title != null) {
+      _json["Title"] = Title;
+    }
     return _json;
   }
 }
 
 
 /** Not documented yet. */
-class GreetingsList {
+class BooksList {
   /** Not documented yet. */
-  core.List<Greeting> items;
+  core.List<Book> items;
 
 
-  GreetingsList();
+  BooksList();
 
-  GreetingsList.fromJson(core.Map _json) {
+  BooksList.fromJson(core.Map _json) {
     if (_json.containsKey("items")) {
-      items = _json["items"].map((value) => new Greeting.fromJson(value)).toList();
+      items = _json["items"].map((value) => new Book.fromJson(value)).toList();
     }
   }
 

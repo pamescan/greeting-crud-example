@@ -1,0 +1,26 @@
+<link rel="import" href="../../packages/polymer/polymer.html">
+
+<link rel="import" href="element_greeting.html">
+<link rel="import" href="create_greeting.html">
+<link rel="import" href="create_book.html">
+<link rel="import" href="element_book.html">
+
+<polymer-element name="list-book"> <template>
+<style>
+#wrapper {
+  margin: 20px;
+}
+</style>
+<h1>Libros</h1>
+  <div id="error-message" hidden></div>
+<div>
+  <create-book on-createbook="{{createBook}}" book="{{newBook}}"></create-book>
+</div>
+
+
+<div id="wrapper" on-deletebook="{{deleteBook}}">
+  <template repeat="{{book in books}}">
+  <element-book book="{{book}}"></element-book>
+  </template>
+</div>
+</template>     <script type="application/dart" src="list_book.dart"></script></polymer-element>

@@ -1,0 +1,222 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/lFL2k9XncNPbrS4NjZrlnGADYMA\"",
+ "discoveryVersion": "v1",
+ "id": "book:v1",
+ "name": "book",
+ "version": "v1",
+ "description": "Books API",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://crudtesteo.appspot.com/_ah/api/book/v1/",
+ "basePath": "/_ah/api/book/v1/",
+ "rootUrl": "https://crudtesteo.appspot.com/_ah/api/",
+ "servicePath": "book/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "schemas": {
+  "Book": {
+   "id": "Book",
+   "type": "object",
+   "properties": {
+    "author": {
+     "type": "string"
+    },
+    "content": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "lastModifiedDate": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "publishedDate": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "title": {
+     "type": "string"
+    },
+    "urlImage": {
+     "type": "string"
+    }
+   }
+  },
+  "BookReq": {
+   "id": "BookReq",
+   "type": "object",
+   "properties": {
+    "Author": {
+     "type": "string"
+    },
+    "Content": {
+     "type": "string"
+    },
+    "Image": {
+     "type": "string"
+    },
+    "PublishedDate": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "Title": {
+     "type": "string"
+    }
+   }
+  },
+  "BooksList": {
+   "id": "BooksList",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Book"
+     }
+    }
+   }
+  }
+ },
+ "resources": {
+  "books": {
+   "methods": {
+    "create": {
+     "id": "book.books.create",
+     "path": "Books",
+     "httpMethod": "PUT",
+     "description": "Crea entidad",
+     "request": {
+      "$ref": "BookReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "Book"
+     }
+    },
+    "destroy": {
+     "id": "book.books.destroy",
+     "path": "Books/{id}",
+     "httpMethod": "DELETE",
+     "description": "Elimina entidad",
+     "parameters": {
+      "id": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "id"
+     ]
+    },
+    "list": {
+     "id": "book.books.list",
+     "path": "Books",
+     "httpMethod": "GET",
+     "description": "Obtiene un listado.",
+     "parameters": {
+      "limit": {
+       "type": "integer",
+       "format": "int32",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "BooksList"
+     }
+    },
+    "show": {
+     "id": "book.books.show",
+     "path": "Books/{id}",
+     "httpMethod": "GET",
+     "description": "Obtiene una entidad",
+     "parameters": {
+      "id": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "id"
+     ],
+     "response": {
+      "$ref": "Book"
+     }
+    },
+    "update": {
+     "id": "book.books.update",
+     "path": "Books/{id}",
+     "httpMethod": "POST",
+     "description": "Modifica entidad",
+     "parameters": {
+      "id": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "id"
+     ],
+     "request": {
+      "$ref": "Book",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "Book"
+     }
+    }
+   }
+  }
+ }
+}

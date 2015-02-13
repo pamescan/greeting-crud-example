@@ -1,0 +1,26 @@
+<link rel="import" href="../../packages/polymer/polymer.html">
+<link rel="import" href="../../packages/paper_elements/paper_input.html">
+<link rel="import"  href="../../packages/paper_elements/paper_button.html">
+
+<polymer-element name="create-book"> <template>
+<style>
+:host {
+  display: block;
+  margin: 10px auto;
+  width: 20em;
+  padding: 10px;
+}
+
+#create {
+  background: green;
+  color: white;
+}
+</style>
+<paper-input label="Título" inputValue="{{book.title}}" floatingLabel></paper-input>
+<paper-input label="Autor" inputValue="{{book.author}}" floatingLabel></paper-input>
+<paper-input label="Contenido" inputValue="{{book.content}}" floatingLabel multiline></paper-input>
+<paper-input label="Ruta Imagen" inputValue="{{book.urlImage}}" floatingLabel></paper-input>
+
+<paper-button id="create" on-click="{{create}}" raised>Añadir</paper-button>
+
+</template> <script type="application/dart" src="create_book.dart"></script> </polymer-element>
