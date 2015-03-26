@@ -15,7 +15,7 @@ import (
 //	Definición de los datos
 //
 
-// entidad Libro a guardar en el datastore
+// entidad base
 type Book struct {
 	Key           *datastore.Key `json:"id" datastore:"-"`
 	Title         string         `json:"title" endpoint:"req"`
@@ -26,16 +26,17 @@ type Book struct {
 	ModifiedDate  time.Time      `json:"lastModifiedDate" datastore:"-"`
 }
 
-// respuesta del metodo de listado de libros
+// lista de entidades base y devueltas en json como items
 type BooksList struct {
 	Items []*Book `json:"items"`
 }
 
+//
 type BooksListReq struct {
 	Limit int `json:"limit" endpoint:"d=10"`
 }
 
-// modelo para la insercción de nuevo dato
+// modelo para la respuesta del servicio tras la insercción de nuevo dato
 type BookReq struct {
 	Title         string
 	Author        string
@@ -44,10 +45,11 @@ type BookReq struct {
 	PublishedDate time.Time
 }
 
+// modelo de devolución tras el borrado
 type BooksD struct {
 }
 
-//modelo parametro eliminación
+//modelo parametro eliminación con la key a eliminar
 type BookReqId struct {
 	Key *datastore.Key `json:"id"`
 }
@@ -85,7 +87,7 @@ func (gs *BookService) List(r *http.Request, req *BooksListReq, resp *BooksList)
 	return nil
 }
 
-// Inserta nueva entidad y devuelve la entidad insertada como respuesta correcta
+// Inserta nueva entidad y devuelve la entidad insertada como respuesta válida
 func (gs *BookService) Create(r *http.Request, req *BookReq, resp *Book) error {
 
 	// nuevo contexto
@@ -148,13 +150,12 @@ func (gs *BookService) Show(r *http.Request, req *BookReqId, resp *Book) error {
 	return nil
 }
 
-/*
 /////////////////////////////////////////
 //
 // INIT
 //
-func init() {
-	bookservice := &BookService{}
+/*func init() {
+	/*bookservice := &BookService{}
 
 	api, err := endpoints.RegisterService(bookservice, "Book", "v1", "Books API", true)
 	if err != nil {
@@ -177,5 +178,4 @@ func init() {
 	info.Name, info.HTTPMethod, info.Path, info.Desc = "books.show", "GET", "Books/{id}", "Obtiene una entidad"
 
 	endpoints.HandleHTTP()
-	}
-*/
+}*/
